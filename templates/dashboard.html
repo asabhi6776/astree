@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Link Name" required>
+        <input type="url" name="url" placeholder="Link URL" required>
+        <button type="submit">Add Link</button>
+    </form>
+    <h2>Your Links:</h2>
+    <ul>
+        {% for link in links %}
+        <li>
+            {{ link.name }} - <a href="/click/{{ link._id }}" target="_blank">{{ link.url }}</a>
+            <form action="/delete_link/{{ link._id }}" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="/logout">Logout</a>
+</body>
+</html>

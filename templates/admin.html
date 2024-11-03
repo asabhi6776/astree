@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="../static/css/admin.css">
+</head>
+
+<body class="background">
+  <form id="accesspanel" method="POST">
+    <div class="inset">
+      <h1 id="litheader">Astree Login</h1>
+      <div class="inputContainer">
+        <input type="text" id="inputField" name="username" placeholder="Username" required>
+        <label class="usernameLabel" for="inputField">Username</label>
+        <svg viewBox="0 0 448 512" class="userIcon">
+          <path
+            d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z">
+          </path>
+        </svg>
+        <br>
+        <input type="password" id="inputField" name="password" placeholder="Password" required>
+      </div>
+      <br>
+      <div class="submitContainer">
+        <button class="login-btn" type="submit"><span class="text">Login</span></button>
+      </div>
+      <a class="signup-link" href="/create_user">Create New User</a>
+    </div>
+  </form>
+
+  <script src="../static/js/admin.js"></script>
+</body>
+
+</html>
