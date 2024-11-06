@@ -22,6 +22,7 @@ body {
   position: relative;
 }
 
+
 .inset {
   text-align: center;
   color: #fff;
@@ -43,6 +44,7 @@ body {
   margin-bottom: 100px;
 }
 
+
 .inputContainer {
   position: relative;
   display: flex;
@@ -56,7 +58,7 @@ body {
   background-color: transparent;
   border-radius: 10px;
   padding: 12px 15px;
-  color: #fff;
+  color: black;
   font-weight: 500;
   outline: none;
   caret-color: rgb(155, 78, 255);
@@ -64,7 +66,48 @@ body {
   font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-.add-btn {
+.userIcon {
+  position: absolute;
+  fill: rgb(155, 78, 255);
+  width: 12px;
+  top: -23px;
+  left: -15px;
+  opacity: 0;
+  transition: .2s linear;
+}
+
+.usernameLabel {
+  position: absolute;
+  top: -25px;
+  left: 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  transition: .2s linear;
+  opacity: 0;
+}
+
+#inputField:focus~.usernameLabel,
+#inputField:valid~.usernameLabel {
+  transform: translateX(20px);
+  opacity: 1;
+}
+
+#inputField:focus~.userIcon,
+#inputField:valid~.userIcon {
+  transform: translateX(20px);
+  opacity: 1;
+}
+
+#inputField:focus,
+#inputField:valid {
+  background-color: #ddd;
+  transition-duration: .3s;
+}
+
+.create-btn {
   display: inline-block;
   padding: 12px 24px;
   font-size: 1.8rem;
@@ -80,7 +123,7 @@ body {
   margin-bottom: 10px;
 }
 
-.add-btn:before {
+.create-btn:before {
   content: '';
   position: absolute;
   top: 0;
@@ -94,54 +137,27 @@ body {
   transition: all 0.4s;
 }
 
-.add-btn:hover {
+.create-btn:hover {
   background-color: #00c853;
   transform: translateY(-3px);
   box-shadow: 0 6px 8px rgba(0, 230, 118, 0.3);
 }
 
-.add-btn:active {
+.create-btn:active {
   transform: translateY(-1px);
   box-shadow: 0 3px 4px rgba(0, 230, 118, 0.2);
 }
 
-.add-btn:hover:before {
+.create-btn:hover:before {
   left: 100%;
 }
 
-.links {
-  text-align: left;
-  align-items: center;
-  justify-content: center;
-  display: block;
-  background-color: #6d6969;
-  padding: 10px;
-  margin: 5px;
-  border-radius: 10px;
-  font-size: 2rem;
-  text-decoration: none;
-}
-
-#delete {
-  background: none;
-  border: none;
-  color: #cc5b5b;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.tables {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.signup-link {
+  display: inline-block;
   text-align: center;
-}
-
-.logout-btn {
-  color: #cc5b5b;
-  font-size: 2rem;
-  cursor: pointer;
   text-decoration: none;
+  color: #00c853;
+  font-size: 1.2rem;
+  font-weight: 500;
+
 }
