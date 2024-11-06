@@ -21,19 +21,19 @@
                 </div>
             </form>
             <h2>Your Links:</h2>
-            <div class="">
+            <div class="tables">
                 <ul>
                     {% for link in links %}
                     <li class="links">
-                        {{ link.name }} - <a href="/click/{{ link._id }}" target="_blank">{{ link.url }}</a>
+                        {{ link.name }} - </br> <a href="/click/{{ link._id }}" target="_blank">{{ link.url }}</a>
                         <form action="/delete_link/{{ link._id }}" method="POST" style="display:inline;">
-                            <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                            <button id="delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
                         </form>
                     </li>
                     {% endfor %}
                 </ul>
             </div>
-            <a href="/logout">Logout</a>
+            <a class="logout-btn" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
         </div>
     </div>
 </body>

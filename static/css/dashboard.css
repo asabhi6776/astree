@@ -110,5 +110,38 @@ body {
 }
 
 .links {
-  border-style: double;
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  background-color: #6d6969;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+#delete {
+  background: none;
+  border: none;
+  color: #cc5b5b;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.tables {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.logout-btn {
+  color: #cc5b5b;
+  font-size: 2rem;
+  cursor: pointer;
+  text-decoration: none;
 }
