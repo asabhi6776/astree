@@ -4,16 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/public_page.css">
   <title>{{ username }}'s Links</title>
 </head>
 
-<body>
-  <h1>{{ username }}'s Links</h1>
-  <ul>
-    {% for link in links %}
-    <li><a href="/click/{{ link._id }}" target="_blank">{{ link.name }}</a></li>
-    {% endfor %}
-  </ul>
+<body class="background">
+  <div id="accesspanel">
+    <div class="inset">
+      <h1 id="litheader">{{ username }}'s Links</h1>
+      <div class="tables">
+        <ul>
+          {% for link in links %}
+          <li class="links"><a href="/click/{{ link._id }}" target="_blank">{{ link.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
