@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+  font-size: 62.5%;
+  font-size: 10px;
+  color: #fff;
+}
+
+.background {
+  background: linear-gradient(rgba(20, 26, 35, 0.55), rgba(20, 26, 35, 0.55)),
+    url("../assets/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  position: relative;
+}
+
+
+#accesspanel {
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.inset {
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* semi-transparent background */
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+a {
+  text-decoration: none;
+  color: #00c853;
+}
+
+.tables {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.links {
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  background-color: #6d6969;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  font-size: 2rem;
+  text-decoration: none;
+}
