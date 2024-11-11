@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+
 # from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,11 +15,11 @@ app.secret_key = os.getenv("SECRET_KEY")
 
 # Configuring MongoDB with certifi
 client = MongoClient(os.getenv("MONGO_URI"), tlsCAFile=certifi.where())
-mongo = client['astree-flask']
+mongo = client["astree-flask"]
 
 
 # Home page displaying public links
-@app.route('/<username>')
+@app.route("/<username>")
 def public_page(username):
     user = mongo.db.users.find_one({"username": username})
     if user:
@@ -28,7 +29,7 @@ def public_page(username):
 
 
 # Admin login route
-@app.route('/admin', methods=["GET", "POST"])
+@app.route("/admin", methods=["GET", "POST"])
 def admin():
     if request.method == "POST":
         username = request.form["username"]
@@ -44,7 +45,7 @@ def admin():
 
 
 # Admin dashboard for managing links
-@app.route('/dashboard', methods=["GET", "POST"])
+@app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
     if "user_id" not in session:
         return redirect(url_for("admin"))
@@ -52,13 +53,15 @@ def dashboard():
     if request.method == "POST":
         link_name = request.form["name"]
         link_url = request.form["url"]
-        mongo.db.links.insert_one({
-            "user_id": ObjectId(session["user_id"]),
-            "name": link_name,
-            "url": link_url,
-            "clicks": 0,
-            "created_at": datetime.datetime.utcnow()
-        })
+        mongo.db.links.insert_one(
+            {
+                "user_id": ObjectId(session["user_id"]),
+                "name": link_name,
+                "url": link_url,
+                "clicks": 0,
+                "created_at": datetime.datetime.utcnow(),
+            }
+        )
         return redirect(url_for("dashboard"))
 
     links = mongo.db.links.find({"user_id": ObjectId(session["user_id"])})
@@ -66,7 +69,7 @@ def dashboard():
 
 
 # Link delete route
-@app.route('/delete_link/<link_id>', methods=["POST"])
+@app.route("/delete_link/<link_id>", methods=["POST"])
 def delete_link(link_id):
     if "user_id" in session:
         mongo.db.links.delete_one({"_id": ObjectId(link_id)})
@@ -75,7 +78,7 @@ def delete_link(link_id):
 
 
 # Track link clicks
-@app.route('/click/<link_id>')
+@app.route("/click/<link_id>")
 def click_link(link_id):
     link = mongo.db.links.find_one({"_id": ObjectId(link_id)})
     if link:
@@ -85,14 +88,14 @@ def click_link(link_id):
 
 
 # User logout
-@app.route('/logout')
+@app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("admin"))
 
 
 # Create a new user route
-@app.route('/create_user', methods=["GET", "POST"])
+@app.route("/create_user", methods=["GET", "POST"])
 def create_user():
     if request.method == "POST":
         username = request.form["username"]
@@ -103,10 +106,9 @@ def create_user():
             flash("Username already exists")
         else:
             hashed_password = generate_password_hash(password)
-            mongo.db.users.insert_one({
-                "username": username,
-                "password": hashed_password
-            })
+            mongo.db.users.insert_one(
+                {"username": username, "password": hashed_password}
+            )
             flash("User created successfully")
             return redirect(url_for("admin"))
 
