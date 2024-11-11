@@ -7,12 +7,15 @@ import certifi
 from pymongo import MongoClient
 import os
 
+
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
+
 
 # Configuring MongoDB with certifi
 client = MongoClient(os.getenv("MONGO_URI"), tlsCAFile=certifi.where())
 mongo = client['astree-flask']
+
 
 # Home page displaying public links
 @app.route('/<username>')
@@ -22,6 +25,7 @@ def public_page(username):
         links = mongo.db.links.find({"user_id": user["_id"]})
         return render_template("public_page.html", username=username, links=links)
     return "User not found", 404
+
 
 # Admin login route
 @app.route('/admin', methods=["GET", "POST"])
@@ -37,6 +41,7 @@ def admin():
         else:
             flash("Invalid credentials")
     return render_template("admin.html")
+
 
 # Admin dashboard for managing links
 @app.route('/dashboard', methods=["GET", "POST"])
@@ -59,6 +64,7 @@ def dashboard():
     links = mongo.db.links.find({"user_id": ObjectId(session["user_id"])})
     return render_template("dashboard.html", links=links)
 
+
 # Link delete route
 @app.route('/delete_link/<link_id>', methods=["POST"])
 def delete_link(link_id):
@@ -66,6 +72,7 @@ def delete_link(link_id):
         mongo.db.links.delete_one({"_id": ObjectId(link_id)})
         return redirect(url_for("dashboard"))
     return redirect(url_for("admin"))
+
 
 # Track link clicks
 @app.route('/click/<link_id>')
@@ -76,11 +83,13 @@ def click_link(link_id):
         return redirect(link["url"])
     return "Link not found", 404
 
+
 # User logout
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for("admin"))
+
 
 # Create a new user route
 @app.route('/create_user', methods=["GET", "POST"])
